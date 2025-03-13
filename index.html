@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html data-bs-theme='dark'>
+<head>
+	<title>Resume builder</title>
+	<link rel='preload' as='image' href='/images/envelope.svg'>
+	<link rel='preload' as='image' href='/images/phone.svg'>
+	<link rel='preload' as='image' href='/images/wa.svg'>
+	<link rel='preload' as='image' href='/images/tg.svg'>
+	<link rel='preload' as='image' href='/images/hhru.svg'>
+	<link rel='preload' as='image' href='/images/linkedin.svg'>
+	<link rel='preload' as='image' href='/images/globe.svg'>
+	<link href='/css/bootstrap.min.css' rel='stylesheet'>
+	<script src='/js/jquery-3.7.1.slim.min.js'></script>
+	<style rel='stylesheet'>
+		[data-toggle="buttons-radio"]>.btn>input[type="radio"] {
+			display: none;
+		}
+	</style>
+</head>
+
+<body class='p-0'>
+	<div class='container bg-body-tertiary pt-5 pb-5'>
+		<div class='row g-3'>
+			
+			<h3 id='lblResume'>Резюме</h3>
+			<!-- Not implemented yet -->
+			<!--
+			<div class='btn-group col-3' data-toggle='buttons-radio'>
+				<label class='btn btn-outline-secondary'>
+					<input type='radio' name='options-language' id='languageEn' value='en' autocomplete='off'>Eng
+				</label>
+				<label class='btn btn-outline-secondary active'>
+					<input type='radio' name='options-language' id='languageRu' value='ru' autocomplete='off' checked>Рус
+				</label>
+			</div>
+			<script>
+				$('input[type="radio"]').on('change', function () {
+					// Remove active class from all labels containing a radio input
+					$('label:has(input[type="radio"])').removeClass('active');
+					// Add active class to the label that wraps the checked radio
+					$('label:has(input[type="radio"]:checked)').addClass('active');
+				});
+			</script>
+			-->
+			<!-- Title -->
+			<div class='col-12'>
+				<label for='inputName' class='form-label'>Имя</label>
+				<input type='text' id='inputName' class='form-control' autocomplete='off'>
+			</div>
+			<div class='col-12'>
+				<label for='inputPosition' class='form-label'>Должность</label>
+				<input type='text' id='inputPosition' class='form-control' autocomplete='off'>
+			</div>
+			<div class='col-12'>
+				<label for='inputLocation' class='form-label'>Локация</label>
+				<input type='text' id='inputLocation' class='form-control' autocomplete='off'>
+			</div>
+			<hr>
+			<!-- Links -->
+			<h5>Ссылки</h5>
+			<div id='links' class='col-12 d-grid gap-1'>
+				<!-- Example -->
+				<div id='exampleLink1' class='input-group' style='display:none!important'>
+					<button class='btn btn-secondary' style='padding-top:0px;padding-bottom:0px;border-width:0px'><img src='/images/linkedin.svg' style='margin:0px'></img></button>
+					<input type='text' id='inputExampleLink1Icon' value='' hidden>
+					<input type='text' id='inputExampleLink1Text' class='form-control' placeholder='Текст' autocomplete='off'>
+					<input type='text' id='inputExampleLink1Address' class='form-control' placeholder='Ссылка' autocomplete='off'>
+					<button class='btn btn-danger' style='padding-top:0px;padding-bottom:0px;border-width:0px'><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></svg></button>
+				</div>
+			</div>
+			<div class='col-12'><button class='w-100 btn btn-secondary btn-sm' id='btnAddLink'>+</button></div>
+			<hr>
+			<!-- Summary -->
+			<div class='col-12'>
+				<label for='inputSummary' class='form-label'>О себе</label>
+				<textarea id='inputSummary' class='form-control col-sm-12' autocomplete='off'></textarea>
+			</div>
+			<hr>
+			<!-- Experience -->
+			<h5>Опыт работы</h5>
+			<div id='experience' class='col-12 d-grid gap-3'>
+				<!-- Example -->
+				<div id='exampleExp1' class='d-grid gap-1' style='display:none!important'>
+					<div class='input-group'>
+						<input type='text' id='inputExampleExp1Com' class='form-control' placeholder='Компания' autocomplete='off'>
+						<button class='btn btn-danger' style='padding-top:0px;padding-bottom:0px;border-width:0px'><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></svg></button>
+					</div>
+					<input type='text' id='inputExampleExp1Pos' class='form-control' placeholder='Должность'>
+					<div class='input-group'>
+						<input type='text' id='inputExampleExp1From' class='form-control' placeholder='С' autocomplete='off'>
+						<input type='text' id='inputExampleExp1To' class='form-control' placeholder='До' autocomplete='off'>
+						<input type='text' id='inputExampleExp1Duration' class='form-control' placeholder='Длительность' autocomplete='off'>
+					</div>
+					<textarea id='inputExampleExp1ContentList' class='form-control' placeholder='Описание' autocomplete='off'></textarea>
+				</div>
+			</div>
+			<div class='col-12'><button class='w-100 btn btn-secondary btn-sm' id='btnAddExp'>+</button></div>
+			<hr>
+			<!-- Education -->
+			<h5>Образование</h5>
+			<div id='education' class='col-12 d-grid gap-3'>
+				<!-- Example -->
+				<div id='exampleEdu1' class='d-grid gap-1' style='display:none!important'>
+					<div class='input-group'>
+						<input type='text' id='inputExampleEdu1Uni' class='form-control' placeholder='ВУЗ' autocomplete='off'>
+						<button class='btn btn-danger' style='padding-top:0px;padding-bottom:0px;border-width:0px'><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></svg></button>
+					</div>
+					<input type='text' id='inputExampleEdu1Prog' class='form-control' placeholder='Программа' autocomplete='off'>
+					<div class='input-group'>
+						<input type='text' id='inputExampleEdu1From' class='form-control' placeholder='С' autocomplete='off'>
+						<input type='text' id='inputExampleEdu1To' class='form-control' placeholder='До' autocomplete='off'>
+						<input type='text' id='inputExampleEdu1Duration' class='form-control' placeholder='Длительность' autocomplete='off'>
+					</div>
+					<input type='text' id='inputExampleEdu1Location' class='form-control' placeholder='Местоположение' autocomplete='off'>
+				</div>
+			</div>
+			<div class='col-12'><button class='w-100 btn btn-secondary btn-sm' id='btnAddEdu'>+</button></div>
+			<hr>
+			<div class='col-12'>
+				<div class='col-12'>
+					<button id='saveSVG' class='btn btn-success col-2'>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+							<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+							<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+						</svg>
+						Скачать SVG
+					</button>
+					<button id='saveJSON' class='btn btn-warning'>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+							<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+							<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+						</svg>
+						Скачать JSON конфиг
+					</button>
+					<button id='loadJSON' class='btn btn-primary'>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+							<path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707z"/>
+							<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+						</svg>
+						Применить конфиг из файла
+					</button>
+				</div>
+			</div>
+			<p></p>
+		</div>
+		<svg id='output' viewBox='0 0 210 297' width='420pt' height='594pt' xmlns='http://www.w3.org/2000/svg'>
+			<rect width='210' height='297' fill='white' />
+		</svg>
+	</div>
+	<!-- Disable 'unused preloaded images' warning -->
+	<img src='/images/envelope.svg' hidden>
+	<img src='/images/phone.svg' hidden>
+	<img src='/images/wa.svg' hidden>
+	<img src='/images/tg.svg' hidden>
+	<img src='/images/hhru.svg' hidden>
+	<img src='/images/linkedin.svg' hidden>
+	<img src='/images/globe.svg' hidden>
+	<script>
+		const outputSVG = document.getElementById('output')
+		const closeIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></svg>'
+		const symbols = '	<!-- Icons -->\
+	<symbol id="icon-tg" viewBox="15 55 110 110">\
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M76.33 132.14L62.5 143.73L58.59 144.26L49.84 114.11L19.06 104L113.82 67.8799L118.29 67.9799L103.36 149.19L76.33 132.14ZM100.03 83.1399L56.61 109.17L61.61 130.5L62.98 130.19L68.2 113.73L102.9 83.4799L100.03 83.1399Z" />\
+	</symbol>\
+	<symbol id="icon-envelope" viewBox="-2 -4.5 24 24">\
+		<path d="M18,2.291L10,9.318L2,2.281L2,2L18,2L18,2.291ZM2,13L2,4.945L10,11.98L18,4.953L18,13L2,13ZM0,15L20,15L20,0L0,0L0,15Z" />\
+	</symbol>\
+	<symbol id="icon-linkedin" viewBox="0 0 24 24">\
+		<path d="M6.5 8C7.32843 8 8 7.32843 8 6.5C8 5.67157 7.32843 5 6.5 5C5.67157 5 5 5.67157 5 6.5C5 7.32843 5.67157 8 6.5 8Z" fill="#0F0F0F"></path> <path d="M5 10C5 9.44772 5.44772 9 6 9H7C7.55228 9 8 9.44771 8 10V18C8 18.5523 7.55228 19 7 19H6C5.44772 19 5 18.5523 5 18V10Z" fill="#0F0F0F"></path> <path d="M11 19H12C12.5523 19 13 18.5523 13 18V13.5C13 12 16 11 16 13V18.0004C16 18.5527 16.4477 19 17 19H18C18.5523 19 19 18.5523 19 18V12C19 10 17.5 9 15.5 9C13.5 9 13 10.5 13 10.5V10C13 9.44771 12.5523 9 12 9H11C10.4477 9 10 9.44772 10 10V18C10 18.5523 10.4477 19 11 19Z" fill="#0F0F0F"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"/>\
+	</symbol>\
+	<symbol id="icon-phone" viewBox="0 0 56.00 56.00">\
+		<path d="M 27.9999 51.9062 C 41.0546 51.9062 51.9063 41.0547 51.9063 28.0000 C 51.9063 14.9219 41.0312 4.0938 27.9765 4.0938 C 14.8983 4.0938 4.0937 14.9219 4.0937 28.0000 C 4.0937 41.0547 14.9218 51.9062 27.9999 51.9062 Z M 21.8827 33.8360 C 16.0702 28.0469 12.3671 20.6640 16.7499 16.2813 C 17.0077 16.0234 17.2890 15.7656 17.5468 15.5078 C 18.8827 14.2422 20.1718 14.3125 21.3202 15.9297 L 24.3671 20.2656 C 25.3983 21.7656 25.1405 22.6094 24.0390 23.7813 L 23.0780 24.8360 C 22.7265 25.1640 22.8671 25.6094 23.0312 25.8906 C 23.4765 26.7344 24.7421 28.2344 26.1014 29.5938 C 27.5077 31.0000 28.9374 32.1953 29.8280 32.6875 C 30.1562 32.875 30.6249 32.9219 30.9296 32.6406 L 31.9374 31.6797 C 33.0624 30.5781 33.9765 30.2969 35.4296 31.3281 C 37.4452 32.7578 38.6640 33.6016 39.8593 34.4219 C 41.3358 35.5000 41.6874 36.8360 40.1874 38.1953 C 39.9296 38.4531 39.6952 38.7344 39.4374 38.9922 C 35.0546 43.3516 27.6952 39.6484 21.8827 33.8360 Z"></path>\
+	</symbol>\
+	<symbol id="icon-globe" viewBox="-3.2 -3.2 38.4 38.4">\
+		<path d="M27.596,23.829C25.681,23.192 23.622,22.716 21.455,22.408C21.75,20.675 21.907,18.859 21.957,17L29.962,17C29.783,19.521 28.936,21.854 27.596,23.829L27.596,23.829ZM19.434,29.559C20.1,27.95 20.645,26.211 21.064,24.379C22.862,24.645 24.586,25.038 26.219,25.554C24.415,27.477 22.073,28.892 19.434,29.559L19.434,29.559ZM16.971,29.951C16.649,29.974 16.328,30 16,30C15.672,30 15.352,29.974 15.029,29.951C14.178,28.179 13.489,26.207 12.979,24.114C13.973,24.027 14.98,23.976 16,23.976C17.02,23.976 18.027,24.027 19.022,24.114C18.511,26.207 17.822,28.179 16.971,29.951L16.971,29.951ZM5.781,25.554C7.414,25.038 9.138,24.645 10.936,24.379C11.355,26.211 11.9,27.95 12.566,29.559C9.927,28.892 7.586,27.477 5.781,25.554L5.781,25.554ZM4.404,23.829C3.064,21.854 2.217,19.521 2.038,17L10.043,17C10.093,18.859 10.25,20.675 10.545,22.408C8.378,22.716 6.319,23.192 4.404,23.829L4.404,23.829ZM4.404,8.171C6.319,8.808 8.378,9.285 10.545,9.592C10.25,11.325 10.093,13.141 10.043,15L2.038,15C2.217,12.479 3.064,10.146 4.404,8.171L4.404,8.171ZM12.566,2.441C11.9,4.05 11.355,5.789 10.936,7.621C9.138,7.356 7.414,6.962 5.781,6.446C7.586,4.523 9.927,3.108 12.566,2.441L12.566,2.441ZM15.029,2.049C15.352,2.027 15.672,2 16,2C16.328,2 16.649,2.027 16.971,2.049C17.822,3.821 18.511,5.794 19.022,7.886C18.027,7.973 17.02,8.024 16,8.024C14.98,8.024 13.973,7.973 12.979,7.886C13.489,5.794 14.178,3.821 15.029,2.049L15.029,2.049ZM19.954,17C19.9,18.761 19.74,20.493 19.439,22.156C18.313,22.058 17.168,22 16,22C14.832,22 13.687,22.058 12.562,22.156C12.26,20.493 12.1,18.761 12.047,17L19.954,17L19.954,17ZM12.047,15C12.1,13.239 12.26,11.507 12.562,9.844C13.687,9.942 14.832,10 16,10C17.168,10 18.313,9.942 19.438,9.844C19.74,11.507 19.9,13.239 19.954,15L12.047,15L12.047,15ZM26.219,6.446C24.586,6.962 22.862,7.356 21.064,7.621C20.645,5.789 20.1,4.05 19.434,2.441C22.073,3.108 24.415,4.523 26.219,6.446L26.219,6.446ZM27.596,8.171C28.936,10.146 29.783,12.479 29.962,15L21.957,15C21.907,13.141 21.75,11.325 21.455,9.592C23.622,9.285 25.681,8.808 27.596,8.171L27.596,8.171ZM16,0C7.164,0 0,7.163 0,16C0,24.837 7.164,32 16,32C24.836,32 32,24.837 32,16C32,7.163 24.836,0 16,0L16,0Z" />\
+	</symbol>\
+	<symbol id="icon-pin" viewBox="0 0 16 16">\
+		<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />\
+	</symbol>\
+	<symbol id="icon-calendar" viewBox="0 0 24 24" fill="none">\
+		<path d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16 13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />\
+	</symbol>\
+	<symbol id="icon-point" viewBox="0 0 24 24">\
+		<circle cx="12" cy="12" r="10" />\
+		<circle cx="12" cy="12" r="5" fill="white" />\
+	</symbol>\
+	<symbol id="icon-hhru" viewBox="0 0 48 48">\
+		<path d="M24 48c13.255 0 24-10.745 24-24S37.255 0 24 0 0 10.745 0 24s10.745 24 24 24 M13.65 13.169v8.164c1.243-1.482 2.733-2.228 4.461-2.228.89 0 1.687.17 2.402.507.717.335 1.253.765 1.615 1.287.364.527.61 1.104.743 1.74.132.633.198 1.618.198 2.954v8.729h-3.862V26.46c0-1.56-.07-2.548-.217-2.968a1.917 1.917 0 0 0-.775-1c-.372-.251-.835-.375-1.394-.375-.64 0-1.214.16-1.713.478-.51.32-.876.798-1.108 1.437-.236.64-.354 1.585-.35 2.836l-.004 7.454H9.789V13.169h3.862m15.206 0v8.164c1.244-1.482 2.733-2.228 4.46-2.228.887 0 1.69.17 2.406.507.714.335 1.25.765 1.61 1.287a4.69 4.69 0 0 1 .743 1.74c.133.633.199 1.618.199 2.954v8.729h-3.858V26.46c0-1.56-.073-2.548-.22-2.968a1.91 1.91 0 0 0-.777-1c-.368-.251-.835-.375-1.394-.375-.639 0-1.213.16-1.713.478-.503.32-.871.798-1.106 1.437-.232.64-.35 1.585-.35 2.836v7.454H25V13.169h3.857" />\
+	</symbol>\
+	<symbol id="icon-wa" viewBox="-30 -30 338 338">\
+		<path d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156 c-3.032,0-5.579,1.511-7.563,4.479c-2.243,3.334-9.033,11.271-11.131,13.642c-0.274,0.313-0.648,0.687-0.872,0.687 c-0.201,0-3.676-1.431-4.728-1.888c-24.087-10.463-42.37-35.624-44.877-39.867c-0.358-0.61-0.373-0.887-0.376-0.887 c0.088-0.323,0.898-1.135,1.316-1.554c1.223-1.21,2.548-2.805,3.83-4.348c0.607-0.731,1.215-1.463,1.812-2.153 c1.86-2.164,2.688-3.844,3.648-5.79l0.503-1.011c2.344-4.657,0.342-8.587-0.305-9.856c-0.531-1.062-10.012-23.944-11.02-26.348 c-2.424-5.801-5.627-8.502-10.078-8.502c-0.413,0,0,0-1.732,0.073c-2.109,0.089-13.594,1.601-18.672,4.802 c-5.385,3.395-14.495,14.217-14.495,33.249c0,17.129,10.87,33.302,15.537,39.453c0.116,0.155,0.329,0.47,0.638,0.922 c17.873,26.102,40.154,45.446,62.741,54.469c21.745,8.686,32.042,9.69,37.896,9.69c0.001,0,0.001,0,0.001,0 c2.46,0,4.429-0.193,6.166-0.364l1.102-0.105c7.512-0.666,24.02-9.22,27.775-19.655c2.958-8.219,3.738-17.199,1.77-20.458 C233.168,179.508,230.845,178.393,227.904,176.981z" />\
+		<path d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716 c-0.484,1.429-0.124,3.009,0.933,4.085C1.908,307.58,2.943,308,4,308c0.405,0,0.813-0.061,1.211-0.188l79.92-25.396 c21.87,11.685,46.588,17.853,71.604,17.853C240.143,300.27,308,232.923,308,150.143C308,67.354,240.143,0,156.734,0z M156.734,268.994c-23.539,0-46.338-6.797-65.936-19.657c-0.659-0.433-1.424-0.655-2.194-0.655c-0.407,0-0.815,0.062-1.212,0.188 l-40.035,12.726l12.924-38.129c0.418-1.234,0.209-2.595-0.561-3.647c-14.924-20.392-22.813-44.485-22.813-69.677 c0-65.543,53.754-118.867,119.826-118.867c66.064,0,119.812,53.324,119.812,118.867 C276.546,215.678,222.799,268.994,156.734,268.994z" />\
+	</symbol>'
+		
+		// Static inputs
+		const inputName = document.getElementById('inputName')
+		const inputPosition = document.getElementById('inputPosition')
+		const inputLocation = document.getElementById('inputLocation')
+		const inputSummary = document.getElementById('inputSummary')
+		// Dynamic inputs containers
+		const divLnk = document.getElementById('links')
+		const divExp = document.getElementById('experience')
+		const divEdu = document.getElementById('education')
+		// Dynamic inputs counters
+		let linkCounter = {
+			current: 0,
+			click: function() { return this.current++ }
+		}
+		let expCounter = {
+			current: 0,
+			click: function() { return this.current++ }
+		}
+		let eduCounter = {
+			current: 0,
+			click: function() { return this.current++ }
+		}
+		// Dynamic inputs add buttons
+		const buttonAddLink = document.getElementById('btnAddLink')
+		const buttonAddExp = document.getElementById('btnAddExp')
+		const buttonAddEdu = document.getElementById('btnAddEdu')
+
+		// Extract data functions
+		function extractLinks() {
+			let data = []
+			for (const child of divLnk.children) {
+				if (child.id.startsWith('link-')) {
+					data.push({
+						'icon': document.getElementById(`${child.id}-icon`).value,
+						'text': document.getElementById(`${child.id}-text`).value,
+						'address': document.getElementById(`${child.id}-address`).value
+					})
+				}
+			}
+			return data
+		}
+		function extractExperience() {
+			let data = []
+			for (const child of divExp.children) {
+				if (child.id.startsWith('experience-')) {
+					data.push({
+						'name': document.getElementById(`${child.id}-name`).value,
+						'position': document.getElementById(`${child.id}-position`).value,
+						'from': document.getElementById(`${child.id}-from`).value,
+						'to': document.getElementById(`${child.id}-to`).value,
+						'duration': document.getElementById(`${child.id}-duration`).value,
+						'location': document.getElementById(`${child.id}-location`).value,
+						'description': document.getElementById(`${child.id}-description`).value
+					})
+				}
+			}
+			return data
+		}
+		function extractEducation() {
+			let data = []
+			for (const child of divEdu.children) {
+				if (child.id.startsWith('education-')) {
+					data.push({
+						'name': document.getElementById(`${child.id}-name`).value,
+						'program': document.getElementById(`${child.id}-program`).value,
+						'from': document.getElementById(`${child.id}-from`).value,
+						'to': document.getElementById(`${child.id}-to`).value,
+						'duration': document.getElementById(`${child.id}-duration`).value,
+						'location': document.getElementById(`${child.id}-location`).value
+					})
+				}
+			}
+			return data
+		}
+		function extractData() {
+			return {
+				'name': inputName.value,
+				'position': inputPosition.value,
+				'location': inputLocation.value,
+				'summary': inputSummary.value,
+				'links': extractLinks(),
+				'experience': extractExperience(),
+				'education': extractEducation()
+			}
+		}
+
+		// Svg component manipulation
+		function setSvgPosition(element, posX, posY) {
+			element.setAttribute('x', posX)
+			element.setAttribute('y', posY)
+		}
+		function setSvgTextFont(element, fontFamily, fontWeight, fontSize) {
+			element.setAttribute('font-family', fontFamily)
+			element.setAttribute('font-weight', fontWeight)
+			element.setAttribute('font-size', fontSize)
+		}
+		function setSvgShapeSize(element, width, height) {
+			element.setAttribute('width', width)
+			element.setAttribute('height', height)
+		}
+		function measureText(text, fontFace = 'sans', fontWeight = 400, fontSize = 16, fontStyle = 'normal') {
+			const canvas = document.createElement('canvas')
+			const ctx = canvas.getContext('2d')
+			ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFace}`
+			return ctx.measureText(text).width;
+		}
+		function createTextFitToWidth(parentElement, text, areaWidth, fontFace, fontWeight, fontSize, lineHeight, emptyLineHeight = 0, offsetX = 0, offsetY = 0, fill = undefined) {
+			// split by lines
+			const lines = text.split('\n')
+			const referenceSpaceWidth = measureText(' ', fontFace, fontWeight, fontSize)
+			let y = 0
+			for (let i = 0; i < lines.length; i++) {
+			//for (const line of lines) {
+				const line = lines[i]
+				// add emptyLineHeight if line indeed is empty
+				if (line.length < 1) {
+					y += emptyLineHeight
+					continue
+				}
+				// split by words
+				const words = line.match(/[^\s]+/g)
+				// create list of words with their widths
+				let wordsSizes = []
+				let accumulatedWidth = 0
+				for (let j = 0; j < words.length; j++) {
+					const word = words[j]
+					const trailingSymbol = (j == (words.length - 1) && i < (lines.length - 1)) ? '\n' : ((j < (words.length - 1)) ? ' ' : '')
+					if (word.length == 0) {
+						wordsSizes.push({'text':trailingSymbol,'width':0})
+						continue
+					}
+					const wordWidth = measureText(word, fontFace, fontWeight, fontSize)
+					wordsSizes.push({'text':word + trailingSymbol,'width':wordWidth})
+					accumulatedWidth += wordWidth + (j > 0 ? referenceSpaceWidth : 0)
+				}
+				const haveMultipleLines = accumulatedWidth > areaWidth
+				if (haveMultipleLines) {
+					let accumulatedWidth = 0
+					let accumulatedWords = []
+					for (const word of wordsSizes) {
+						if (accumulatedWidth + accumulatedWords.length * referenceSpaceWidth + word.width > areaWidth) {
+							const spaceWidth = (areaWidth - accumulatedWidth) / (accumulatedWords.length - 1)
+							let x = 0
+							for (const currentWord of accumulatedWords) {
+								const wordElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+								setSvgTextFont(wordElement, fontFace, fontWeight, fontSize)
+								setSvgPosition(wordElement, x + offsetX, y + fontSize + offsetY)
+								if (fill !== undefined) {
+									wordElement.setAttribute('fill', fill)
+								}
+								wordElement.textContent = currentWord.text
+								parentElement.appendChild(wordElement)
+								x += currentWord.width + spaceWidth
+							}
+							accumulatedWidth = 0
+							accumulatedWords = []
+							y += lineHeight
+						}
+						accumulatedWidth += word.width
+						accumulatedWords.push(word)
+					}
+					if (accumulatedWords.length > 0) {
+						let remainingLine = ''
+						for (let k = 0; k < accumulatedWords.length; k++) {
+							remainingLine += accumulatedWords[k].text
+						}
+						const lineElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+						setSvgTextFont(lineElement, fontFace, fontWeight, fontSize)
+						setSvgPosition(lineElement, offsetX, y + fontSize + offsetY)
+						if (fill !== undefined) {
+							lineElement.setAttribute('fill', fill)
+						}
+						lineElement.textContent = remainingLine
+						parentElement.appendChild(lineElement)
+						y += lineHeight
+					}
+				}
+				else {
+					const lineElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+					setSvgTextFont(lineElement, fontFace, fontWeight, fontSize)
+					setSvgPosition(lineElement, offsetX, y + fontSize + offsetY)
+					if (fill !== undefined) {
+						lineElement.setAttribute('fill', fill)
+					}
+					lineElement.textContent = line
+					parentElement.appendChild(lineElement)
+					y += lineHeight
+				}
+			}
+			return y
+		}
+		// Update result SVG
+		function updateSvg() {
+			outputSVG.innerHTML = symbols
+			// background
+			const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+			bg.setAttribute('fill', 'white')
+			bg.setAttribute('width', 210)
+			bg.setAttribute('height', 297)
+			outputSVG.appendChild(bg)
+
+			const pageSize = {'width':210,'height':297}
+			const margin = 5
+			const isDebug = false
+			const positionX = margin
+			let positionY = margin
+			const contentWidth = pageSize.width - margin * 2
+			const data = extractData()
+
+			function debugMark(parentElement) {
+				if (isDebug) {
+					const cursor = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+					cursor.setAttribute('fill', '#aaa')
+					setSvgShapeSize(cursor, 4, 4)
+					parentElement.appendChild(cursor)
+				}
+			}
+
+			// Title
+			const groupTitle = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+			groupTitle.setAttribute('id', 'title')
+			groupTitle.setAttribute('transform', `translate(${positionX}, ${positionY})`)
+			debugMark(groupTitle)
+			// Name
+			const titleName = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+			setSvgTextFont(titleName, 'Times New Roman', 700, 12)
+			setSvgPosition(titleName, 0, 9)
+			titleName.textContent = data.name
+			groupTitle.appendChild(titleName)
+			// Position
+			const titlePosition = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+			setSvgTextFont(titlePosition, 'Times New Roman', 400, 8)
+			setSvgPosition(titlePosition, 0, 19)
+			titlePosition.setAttribute('fill', '#666')
+			titlePosition.textContent = data.position
+			groupTitle.appendChild(titlePosition)
+			// Location Pin
+			const titleLocationPin = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+			titleLocationPin.setAttribute('href', '#icon-pin')
+			setSvgPosition(titleLocationPin, 0, 23.25)
+			setSvgShapeSize(titleLocationPin, 3, 3)
+			titleLocationPin.setAttribute('fill', '#666')
+			groupTitle.appendChild(titleLocationPin)
+			// Location
+			const titleLocation = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+			setSvgTextFont(titleLocation, 'Times New Roman', 100, 4)
+			setSvgPosition(titleLocation, 4, 26)
+			titleLocation.setAttribute('fill', '#666')
+			titleLocation.textContent = data.location
+			groupTitle.appendChild(titleLocation)
+			outputSVG.appendChild(groupTitle)
+			positionY += 28
+
+			// Links
+			if (data.links !== undefined && Array.isArray(data.links) && (data.links.length > 0)) {
+				const groupLinks = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+				groupLinks.setAttribute('id', 'links')
+				groupLinks.setAttribute('transform', `translate(${positionX}, ${positionY})`)
+				debugMark(groupLinks)
+				let x = 0
+				let y = 0
+				const linkWidth = Math.floor(contentWidth / 4)
+				const linkTextSize = 4.2
+				const linkHeight = 5.6
+				for (const link of data.links) {
+					const groupCurrentLink = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+					groupCurrentLink.setAttribute('transform', `translate(${x}, ${y})`)
+					const ref = document.createElementNS('http://www.w3.org/2000/svg', 'a')
+					ref.setAttribute('href', link.address)
+					
+					const rectArea = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+					rectArea.setAttribute('fill', 'rgba(255, 255, 255, 0.0)')
+					rectArea.setAttribute('style', 'opacity:0')
+					setSvgShapeSize(rectArea, linkWidth, linkHeight)
+					ref.appendChild(rectArea)
+					const useIcon = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+					useIcon.setAttribute('href', `#icon-${link.icon}`)
+					setSvgShapeSize(useIcon, linkHeight, linkHeight)
+					ref.appendChild(useIcon)
+					const text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+					setSvgTextFont(text, 'Times New Roman', 400, linkTextSize)
+					setSvgPosition(text, linkHeight, linkTextSize)
+					text.textContent = link.text
+					ref.appendChild(text)
+
+					groupCurrentLink.appendChild(ref)
+					groupLinks.appendChild(groupCurrentLink)
+					x += linkWidth
+					if (x > contentWidth) {
+						y += linkHeight
+						x = 0
+					}
+				}
+				outputSVG.appendChild(groupLinks)
+				positionY += y + linkHeight + 2
+			}
+
+			// Summary
+			if (data.summary !== undefined && typeof data.summary === 'string' && data.summary.length > 0) {
+				const groupSummary = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+				groupSummary.setAttribute('id', 'summary')
+				groupSummary.setAttribute('transform', `translate(${positionX}, ${positionY})`)
+				debugMark(groupSummary)
+				let deltaHeight = createTextFitToWidth(groupSummary, data.summary, contentWidth, 'Times New Roman', 400, 6, 7, 2)
+				outputSVG.appendChild(groupSummary)
+				positionY += deltaHeight
+			}
+
+			// Experience
+			if (data.experience !== undefined && Array.isArray(data.experience) && data.experience.length > 0) {
+				let height = 0
+				const gap = 2
+				const groupExp = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+				groupExp.setAttribute('id', 'experience')
+				groupExp.setAttribute('transform', `translate(${positionX}, ${positionY})`)
+				debugMark(groupExp)
+				const fontFamily = 'Times New Roman'
+				const fontWeight = 400
+				const titleFontWeight = 700
+				const titleFontSize = 8
+				const title = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+				setSvgTextFont(title, fontFamily, titleFontWeight, titleFontSize)
+				setSvgPosition(title, 0, titleFontSize)
+				title.textContent = 'Опыт работы'
+				groupExp.appendChild(title)
+				let positionsHeights = []
+				const positionOffsetX = 8
+				const positionWidth = contentWidth - positionOffsetX
+				const topFillColor = '#666'
+				for (const exp of data.experience) {
+					const groupPosition = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+					let posHeight = 0
+					let dates = ''
+					let location = ''
+					const topFontSize = 4
+					const gap = 1
+					if (exp?.from?.length > 0) {
+						dates += exp.from
+					}
+					if (exp?.to?.length > 0) {
+						if (dates.length === 0)
+							dates = 'Не указано'
+						dates += ' - ' + exp.to
+					}
+					if (exp?.duration?.length > 0) {
+						if (dates.length > 0) {
+							dates += ' · '
+						}
+						dates += exp.duration
+					}
+					if (exp?.location?.length > 0) {
+						location = exp.location
+					}
+					let locationOffsetX = measureText(dates, fontFamily, fontWeight, topFontSize)
+					if (dates?.length > 0 || location?.length > 0) {
+						if (dates?.length > 0) {
+							const textDates = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+							setSvgTextFont(textDates, fontFamily, fontWeight, topFontSize)
+							setSvgPosition(textDates, 0, topFontSize)
+							textDates.setAttribute('fill', topFillColor)
+							textDates.textContent = dates
+							groupPosition.appendChild(textDates)
+							locationOffsetX += topFontSize * 0.25
+						}
+						if (location?.length > 0) {
+							const iconPin = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+							iconPin.setAttribute('href', '#icon-pin')
+							setSvgPosition(iconPin, locationOffsetX, topFontSize * 0.375)
+							setSvgShapeSize(iconPin, topFontSize * 0.75, topFontSize * 0.75)
+							iconPin.setAttribute('fill', topFillColor)
+							groupPosition.appendChild(iconPin)
+							const textLocation = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+							setSvgTextFont(textLocation, fontFamily, fontWeight, topFontSize)
+							setSvgPosition(textLocation, locationOffsetX + topFontSize * 0.75, topFontSize)
+							textLocation.setAttribute('fill', topFillColor)
+							textLocation.textContent = location
+							groupPosition.appendChild(textLocation)
+						}
+						posHeight += topFontSize + gap
+					}
+					// Company name
+					const nameFontWeight = 700
+					const nameFontSize = 6
+					if (exp?.name?.length > 0) {
+						const textName = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+						setSvgTextFont(textName, fontFamily, nameFontWeight, nameFontSize)
+						setSvgPosition(textName, 0, posHeight + nameFontSize)
+						textName.textContent = exp.name
+						groupPosition.appendChild(textName)
+						posHeight += nameFontSize + gap
+					}
+					// Position title
+					const ptFontWeight = 400
+					const ptFontSize = 5
+					if (exp?.position?.length > 0) {
+						const textPosition = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+						setSvgTextFont(textPosition, fontFamily, ptFontWeight, ptFontSize)
+						setSvgPosition(textPosition, 0, posHeight + ptFontSize)
+						textPosition.textContent = exp.position
+						groupPosition.appendChild(textPosition)
+						posHeight += ptFontSize + gap
+					}
+					// Description
+					const descFontWeight = 400
+					const descFontSize = 5
+					const descFillColor = '#666'
+					if (exp?.description?.length > 0) {
+						const descGap = 1
+						let deltaHeight = createTextFitToWidth(groupPosition, exp.description, positionWidth, fontFamily, descFontWeight, descFontSize, descFontSize + descGap, descGap, 0, posHeight, descFillColor)
+						posHeight += deltaHeight + gap
+					}
+					positionsHeights.push({'group':groupPosition,'height':posHeight + gap})
+				}
+				for (const position of positionsHeights) {
+					position.group.setAttribute('transform', `translate(${positionOffsetX}, ${height + titleFontSize + gap})`)
+					groupExp.appendChild(position.group)
+					height += position.height
+				}
+				const decorFill = '#888'
+				const decorLineWidth = 1
+				const rectLine = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+				rectLine.setAttribute('fill', decorFill)
+				setSvgPosition(rectLine, 2, titleFontSize + gap + 2)
+				setSvgShapeSize(rectLine, decorLineWidth, height - 2 - gap)
+				groupExp.appendChild(rectLine)
+				let pointY = 0
+				for (const position of positionsHeights) {
+					const iconPoint = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+					iconPoint.setAttribute('href', '#icon-point')
+					iconPoint.setAttribute('fill', decorFill)
+					setSvgPosition(iconPoint, 0, titleFontSize + gap + pointY)
+					setSvgShapeSize(iconPoint, 5, 5)
+					groupExp.appendChild(iconPoint)
+					pointY += position.height
+				}
+				outputSVG.appendChild(groupExp)
+				positionY += height + titleFontSize + gap
+			}
+
+			// Education
+			if (data.education !== undefined && Array.isArray(data.education) && data.education.length > 0) {
+				let height = 0
+				const gap = 2
+				const groupEdu = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+				groupEdu.setAttribute('id', 'education')
+				groupEdu.setAttribute('transform', `translate(${positionX}, ${positionY})`)
+				debugMark(groupEdu)
+				const fontFamily = 'Times New Roman'
+				const fontWeight = 400
+				const titleFontWeight = 700
+				const titleFontSize = 8
+				const title = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+				setSvgTextFont(title, fontFamily, titleFontWeight, titleFontSize)
+				setSvgPosition(title, 0, titleFontSize)
+				title.textContent = 'Образование'
+				groupEdu.appendChild(title)
+				let educationsHeights = []
+				const educationOffsetX = 0
+				const educationWidth = contentWidth - educationOffsetX
+				const topFillColor = '#666'
+				for (const edu of data.education) {
+					const groupPosition = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+					let eduHeight = 0
+					let dates = ''
+					let location = ''
+					const topFontSize = 4
+					const gap = 1
+					if (edu?.from?.length > 0) {
+						dates += edu.from
+					}
+					if (edu?.to?.length > 0) {
+						if (dates.length === 0)
+							dates = 'Не указано'
+						dates += ' - ' + edu.to
+					}
+					if (edu?.duration?.length > 0) {
+						if (dates.length > 0) {
+							dates += ' · '
+						}
+						dates += edu.duration
+					}
+					if (edu?.location?.length > 0) {
+						location = edu.location
+					}
+					let locationOffsetX = measureText(dates, fontFamily, fontWeight, topFontSize)
+					if (dates?.length > 0 || location?.length > 0) {
+						if (dates?.length > 0) {
+							const textDates = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+							setSvgTextFont(textDates, fontFamily, fontWeight, topFontSize)
+							setSvgPosition(textDates, 0, topFontSize)
+							textDates.setAttribute('fill', topFillColor)
+							textDates.textContent = dates
+							groupPosition.appendChild(textDates)
+							locationOffsetX += topFontSize * 0.25
+						}
+						if (location?.length > 0) {
+							const iconPin = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+							iconPin.setAttribute('href', '#icon-pin')
+							setSvgPosition(iconPin, locationOffsetX, topFontSize * 0.375)
+							setSvgShapeSize(iconPin, topFontSize * 0.75, topFontSize * 0.75)
+							iconPin.setAttribute('fill', topFillColor)
+							groupPosition.appendChild(iconPin)
+							const textLocation = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+							setSvgTextFont(textLocation, fontFamily, fontWeight, topFontSize)
+							setSvgPosition(textLocation, locationOffsetX + topFontSize * 0.75, topFontSize)
+							textLocation.setAttribute('fill', topFillColor)
+							textLocation.textContent = location
+							groupPosition.appendChild(textLocation)
+						}
+						eduHeight += topFontSize + gap
+					}
+					// School name
+					const nameFontWeight = 700
+					const nameFontSize = 6
+					if (edu?.name?.length > 0) {
+						const textName = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+						setSvgTextFont(textName, fontFamily, nameFontWeight, nameFontSize)
+						setSvgPosition(textName, 0, eduHeight + nameFontSize)
+						textName.textContent = edu.name
+						groupPosition.appendChild(textName)
+						eduHeight += nameFontSize + gap
+					}
+					// Education title
+					const ptFontWeight = 400
+					const ptFontSize = 5
+					if (edu?.program?.length > 0) {
+						const textPosition = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+						setSvgTextFont(textPosition, fontFamily, ptFontWeight, ptFontSize)
+						setSvgPosition(textPosition, 0, eduHeight + ptFontSize)
+						textPosition.textContent = edu.program
+						groupPosition.appendChild(textPosition)
+						eduHeight += ptFontSize + gap
+					}
+					educationsHeights.push({'group':groupPosition,'height':eduHeight + gap})
+				}
+				for (const education of educationsHeights) {
+					education.group.setAttribute('transform', `translate(${educationOffsetX}, ${height + titleFontSize + gap})`)
+					groupEdu.appendChild(education.group)
+					height += education.height
+				}
+				outputSVG.appendChild(groupEdu)
+				positionY += height + titleFontSize + gap
+			}
+
+			// Current cursor position for debug
+			if (isDebug) {
+				const debugCursor = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+				debugCursor.setAttribute('fill', 'black')
+				setSvgPosition(debugCursor, positionX, positionY)
+				setSvgShapeSize(debugCursor, 4, 4)
+				outputSVG.appendChild(debugCursor)
+			}
+		}
+
+		const btnSaveSvg = document.getElementById('saveSVG')
+		btnSaveSvg.onclick = () => {
+			// https://stackoverflow.com/a/30800715
+			var serializer = new XMLSerializer();
+			var dataStr = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serializer.serializeToString(outputSVG))
+			var downloadAnchorNode = document.createElement('a')
+			downloadAnchorNode.setAttribute('href', dataStr)
+			downloadAnchorNode.setAttribute('download', 'resume.svg')
+			document.body.appendChild(downloadAnchorNode) // required for firefox
+			downloadAnchorNode.click()
+			downloadAnchorNode.remove()
+		}
+		const btnSaveJson = document.getElementById('saveJSON')
+		btnSaveJson.onclick = () => {
+			// https://stackoverflow.com/a/30800715
+			var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(extractData(), null, 4))
+			var downloadAnchorNode = document.createElement('a')
+			downloadAnchorNode.setAttribute('href', dataStr)
+			downloadAnchorNode.setAttribute('download', 'resume.json')
+			document.body.appendChild(downloadAnchorNode) // required for firefox
+			downloadAnchorNode.click()
+			downloadAnchorNode.remove()
+		}
+		const btnLoadJson = document.getElementById('loadJSON')
+		btnLoadJson.onclick = () => {
+			// https://stackoverflow.com/a/19039880
+			if (!window.FileReader) {
+				alert('Your browser is not supported');
+				return false;
+			}
+			const input = document.createElement('input')
+			input.type = 'file'
+			input.accept = 'application/json'
+			input.onchange = () => {
+				const reader = new FileReader();
+				if (input.files.length) {
+					let textFile = input.files[0];
+					// Read the file
+					reader.readAsText(textFile);
+					// When it's loaded, process it
+					$(reader).on('load', e => {
+						const file = e.target.result
+						if (file && file.length) {
+							try {
+								const data = JSON.parse(file)
+								inputName.value = data?.name ?? ''
+								inputPosition.value = data?.position ?? ''
+								inputLocation.value = data?.location ?? ''
+								inputSummary.value = data?.summary ?? ''
+								// press to all dynamic inputs's remove buttons
+								let buttonsToPress = []
+								for (const link of divLnk.children) {
+									if (link.id.startsWith('link-')) {
+										buttonsToPress.push(document.getElementById(`${link.id}-remove`))
+									}
+								}
+								for (const exp of divExp.children) {
+									if (exp.id.startsWith('experience-')) {
+										buttonsToPress.push(document.getElementById(`${exp.id}-remove`))
+									}
+								}
+								for (const edu of divEdu.children) {
+									if (edu.id.startsWith('education-')) {
+										buttonsToPress.push(document.getElementById(`${edu.id}-remove`))
+									}
+								}
+								for (const btn of buttonsToPress) {
+									btn.click()
+								}
+								// add links
+								linkCounter.current = 0
+								for (let i = 0; i < (data?.links?.length ?? 0); i++) {
+									buttonAddLink.click()
+								}
+								let currentLinkId = 0
+								for (const link of divLnk.children) {
+									const id = link.id
+									if (id.startsWith('link-') && (currentLinkId < (data?.links?.length ?? 0))) {
+										const currentData = data.links[currentLinkId]
+										document.getElementById(`${id}-icon-picker-img`).src = `/images/${currentData.icon}.svg`
+										for (const [key, value] of Object.entries(currentData)) {
+											document.getElementById(`${id}-${key}`).value = value
+										}
+										currentLinkId++
+									}
+								}
+								// add experience
+								expCounter.current = 0
+								for (let i = 0; i < (data?.experience?.length ?? 0); i++) {
+									buttonAddExp.click()
+								}
+								let currentExpId = 0
+								for (const exp of divExp.children) {
+									const id = exp.id
+									if (id.startsWith('experience-') && (currentExpId < (data?.experience?.length ?? 0))) {
+										const currentData = data.experience[currentExpId]
+										for (const [key, value] of Object.entries(currentData)) {
+											document.getElementById(`${id}-${key}`).value = value
+										}
+										currentExpId++
+									}
+								}
+								// add education
+								eduCounter.current = 0
+								for (let i = 0; i < (data?.education?.length ?? 0); i++) {
+									buttonAddEdu.click()
+								}
+								let currentEduId = 0
+								for (const edu of divEdu.children) {
+									const id = edu.id
+									if (id.startsWith('education-') && (currentEduId < (data?.education?.length ?? 0))) {
+										const currentData = data.education[currentEduId]
+										for (const [key, value] of Object.entries(currentData)) {
+											document.getElementById(`${id}-${key}`).value = value
+										}
+										currentEduId++
+									}
+								}
+							}
+							catch (e) {
+								console.error(e)
+							}
+							updateSvg()
+						}
+					});
+				} else {
+					console.log('file was not loaded')
+				}
+			}
+			input.click()
+		}
+
+		inputName.addEventListener('change', updateSvg)
+		inputPosition.addEventListener('change', updateSvg)
+		inputLocation.addEventListener('change', updateSvg)
+		inputSummary.addEventListener('change', updateSvg)
+
+		function createTextInput(id, placeholder = undefined) {
+			const input = document.createElement('input')
+			input.type = 'text'
+			input.id = id
+			input.className = 'form-control'
+			if (placeholder !== undefined)
+				input.placeholder = placeholder
+			input.autocomplete = 'off'
+			return input
+		}
+		function createCloseButton(id) {
+			const btn = document.createElement('button')
+			btn.id = id
+			btn.className = 'btn btn-danger'
+			btn.style.paddingTop = '0px'
+			btn.style.paddingBottom = '0px'
+			btn.style.borderWidth = '0px'
+			btn.innerHTML = closeIcon
+			return btn
+		}
+
+		buttonAddLink.onclick = () => {
+			const idNum = linkCounter.click()
+			const id = `link-${idNum}`
+			const div = document.createElement('div')
+			div.id = id
+			div.className = 'input-group'
+
+			const btnIconPicker = document.createElement('button')
+			btnIconPicker.className = 'btn btn-secondary dropdown-toggle'
+			btnIconPicker.setAttribute('data-bs-toggle', 'dropdown')
+			btnIconPicker.setAttribute('aria-expanded', false)
+			btnIconPicker.style.paddingTop = '0px'
+			btnIconPicker.style.paddingBottom = '0px'
+			btnIconPicker.style.borderWidth = '0px'
+			const imgIconPicker = document.createElement('img')
+			imgIconPicker.src = '/images/envelope.svg'
+			imgIconPicker.style.margin = '0px'
+			imgIconPicker.id = `${id}-icon-picker-img`
+			btnIconPicker.appendChild(imgIconPicker)
+			div.appendChild(btnIconPicker)
+			const inputIcon = document.createElement('input')
+			inputIcon.type = 'text'
+			inputIcon.id = `${id}-icon`
+			inputIcon.hidden = true
+			inputIcon.value = 'envelope'
+			div.appendChild(inputIcon)
+
+			const ulDropdown = document.createElement('ul')
+			ulDropdown.className = 'dropdown-menu'
+			function addDropdownItem(parentUl, name) {
+				const li = document.createElement('li')
+				const a = document.createElement('a')
+				a.className = 'dropdown-item'
+				a.href = '#'
+				const img = document.createElement('img')
+				img.src = `/images/${name}.svg`
+				a.appendChild(img)
+				const text = document.createTextNode(name)
+				a.appendChild(text)
+				a.onclick = function() {
+					imgNewLinkIconPicker.src = `/images/${name}.svg`
+					inputNewLinkIcon.value = name
+					updateSvg()
+					return false
+				}
+				li.appendChild(a)
+				parentUl.appendChild(li)
+			}
+			addDropdownItem(ulDropdown, 'envelope')
+			addDropdownItem(ulDropdown, 'phone')
+			addDropdownItem(ulDropdown, 'wa')
+			addDropdownItem(ulDropdown, 'tg')
+			addDropdownItem(ulDropdown, 'hhru')
+			addDropdownItem(ulDropdown, 'linkedin')
+			addDropdownItem(ulDropdown, 'globe')
+			div.appendChild(ulDropdown)
+
+			const inputText = createTextInput(`${id}-text`, 'Текст')
+			inputText.onchange = updateSvg
+			div.appendChild(inputText)
+
+			const inputAddress = createTextInput(`${id}-address`, 'Ссылка')
+			inputAddress.onchange = updateSvg
+			div.appendChild(inputAddress)
+
+			const btnRemove = createCloseButton(`${id}-remove`)
+			btnRemove.onclick = function() {
+				div.remove()
+				updateSvg()
+			}
+			div.appendChild(btnRemove)
+
+			divLnk.appendChild(div)
+			updateSvg()
+		}
+
+		buttonAddExp.onclick = () => {
+			const idNum = expCounter.click()
+			const id = `experience-${idNum}`
+			const div = document.createElement('div')
+			div.id = id
+			div.className = 'd-grid gap-1'
+
+			const divFirstLine = document.createElement('div')
+			divFirstLine.className = 'input-group'
+			const inputName = createTextInput(`${id}-name`, 'Компания')
+			inputName.onchange = updateSvg
+			divFirstLine.appendChild(inputName)
+			const btnRemove = createCloseButton(`${id}-remove`)
+			btnRemove.onclick = function() {
+				div.remove()
+				updateSvg()
+			}
+			divFirstLine.appendChild(btnRemove)
+			div.appendChild(divFirstLine)
+
+			const inputPos = createTextInput(`${id}-position`, 'Должность')
+			inputPos.onchange = updateSvg
+			div.appendChild(inputPos)
+
+			const divDates = document.createElement('div')
+			divDates.className = 'input-group'
+			const inputFrom = createTextInput(`${id}-from`, 'С')
+			inputFrom.onchange = updateSvg
+			divDates.appendChild(inputFrom)
+			const inputTo = createTextInput(`${id}-to`, 'До')
+			inputTo.onchange = updateSvg
+			divDates.appendChild(inputTo)
+			const inputDuration = createTextInput(`${id}-duration`, 'Длительность')
+			inputDuration.onchange = updateSvg
+			divDates.appendChild(inputDuration)
+			div.appendChild(divDates)
+
+			const inputLocation = createTextInput(`${id}-location`, 'Местоположение')
+			inputLocation.onchange = updateSvg
+			div.appendChild(inputLocation)
+
+			const textareaDescription = document.createElement('textarea')
+			textareaDescription.id = `${id}-description`
+			textareaDescription.className = 'form-control'
+			textareaDescription.placeholder = 'Описание'
+			textareaDescription.autocomplete = 'off'
+			textareaDescription.onchange = updateSvg
+			div.appendChild(textareaDescription)
+
+			divExp.appendChild(div)
+			updateSvg()
+		}
+
+		buttonAddEdu.onclick = () => {
+			const idNum = eduCounter.click()
+			const id = `education-${idNum}`
+			const div = document.createElement('div')
+			div.id = id
+			div.className = 'd-grid gap-1'
+
+			const divFirstLine = document.createElement('div')
+			divFirstLine.className = 'input-group'
+			const inputName = createTextInput(`${id}-name`, 'ВУЗ')
+			inputName.onchange = updateSvg
+			divFirstLine.appendChild(inputName)
+			const btnRemove = createCloseButton(`${id}-remove`)
+			btnRemove.onclick = function() {
+				div.remove()
+				updateSvg()
+			}
+			divFirstLine.appendChild(btnRemove)
+			div.appendChild(divFirstLine)
+
+			const inputProg = createTextInput(`${id}-program`, 'Программа')
+			inputProg.onchange = updateSvg
+			div.appendChild(inputProg)
+
+			const divDates = document.createElement('div')
+			divDates.className = 'input-group'
+			const inputFrom = createTextInput(`${id}-from`, 'С')
+			inputFrom.onchange = updateSvg
+			divDates.appendChild(inputFrom)
+			const inputTo = createTextInput(`${id}-to`, 'До')
+			inputTo.onchange = updateSvg
+			divDates.appendChild(inputTo)
+			const inputDuration = createTextInput(`${id}-duration`, 'Длительность')
+			inputDuration.onchange = updateSvg
+			divDates.appendChild(inputDuration)
+			div.appendChild(divDates)
+
+			const inputLocation = createTextInput(`${id}-location`, 'Местоположение')
+			inputLocation.onchange = updateSvg
+			div.appendChild(inputLocation)
+
+			divEdu.appendChild(div)
+			updateSvg()
+		}
+	</script>
+	<script src='/js/bootstrap.bundle.min.js'></script>
+</body>
+</html>
