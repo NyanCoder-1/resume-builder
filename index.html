@@ -944,8 +944,8 @@
 				const text = document.createTextNode(name)
 				a.appendChild(text)
 				a.onclick = function() {
-					imgNewLinkIconPicker.src = `/images/${name}.svg`
-					inputNewLinkIcon.value = name
+					imgIconPic.src = `/images/${name}.svg`
+					inputIcon.value = name
 					updateSvg()
 					return false
 				}
